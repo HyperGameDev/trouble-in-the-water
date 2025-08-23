@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://57e1m1qmfecs"]
+[gd_scene load_steps=16 format=3 uid="uid://57e1m1qmfecs"]
 
 [ext_resource type="Script" uid="uid://cgqobh3qfv48e" path="res://Scenes/character_body_3d.gd" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://bqs80hd40bifp" path="res://fisihing_node.gd" id="2_bo1nx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7u77a"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -18,8 +19,6 @@ tonemap_mode = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jjgbg"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_jjvhh"]
-
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kry3j"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_21xkr"]
@@ -36,6 +35,11 @@ noise = SubResource("FastNoiseLite_344ge")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hptm8"]
 albedo_texture = SubResource("NoiseTexture2D_ynf5e")
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_jjgbg"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bo1nx"]
+radius = 2.524
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -51,6 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_jjgbg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+visible = false
 mesh = SubResource("CapsuleMesh_8gbba")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
@@ -61,9 +66,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5063, 0)
 shape = SubResource("CapsuleShape3D_jjgbg")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("PlaneMesh_jjvhh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_kry3j")
@@ -99,3 +101,24 @@ transform = Transform3D(4.37114e-08, 1, -1.19209e-07, 1, -4.37114e-08, 0, -3.552
 mesh = SubResource("PlaneMesh_21xkr")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_hptm8")
+
+[node name="Fisihing_node" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.78995)
+script = ExtResource("2_bo1nx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Fisihing_node"]
+mesh = SubResource("CylinderMesh_jjgbg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fisihing_node"]
+shape = SubResource("SphereShape3D_bo1nx")
+
+[node name="Label_Fish" type="Label3D" parent="Fisihing_node"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4968, 0)
+billboard = 2
+no_depth_test = true
+render_priority = 120
+outline_render_priority = 127
+text = "FISH (E)"
+font_size = 142
+outline_size = 9

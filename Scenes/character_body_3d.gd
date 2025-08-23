@@ -2,14 +2,13 @@ extends CharacterBody3D
 
 @onready var camera: Camera3D = %Camera3D
 
-
 const SPEED: float = 15.
 const JUMP_VELOCITY: float = 4.5
 
 const ROTATE_FACTOR: float = 500.
 const ROTATE_SPEED: float = 300.
 const ROTATE_CLAMP: float = 1.5
-#const ROTATE_VERTICAL
+const ROTATE_VERTICAL_CLAMP: float = .65
 
 func _physics_process(delta: float) -> void:
 	_handle_rotation()
@@ -34,13 +33,14 @@ func _physics_process(delta: float) -> void:
 	
 	
 func _handle_rotation() -> void:
-	var vertical_rotation_raw: float = deg_to_rad(-MouseCanvas.mouse_relative.y/ROTATE_FACTOR * ROTATE_SPEED)
+	var vertical_rotation_raw: float = deg_to_rad(-MouseCanvas.mouse_offset.y * ROTATE_SPEED)
 	var horizontal_rotation_raw: float = deg_to_rad(-MouseCanvas.mouse_relative.x/ROTATE_FACTOR * ROTATE_SPEED)
 	
 	var horizontal_rotation: float = horizontal_rotation_raw
 	var vertical_rotation: float = vertical_rotation_raw
 	
 	global_rotation.y = horizontal_rotation #Horizontal rotation
-	camera.global_rotation.x = clamp(vertical_rotation, #Vertical rotation (camera)
+	camera.global_rotation.x = clamp(vertical_rotation, -ROTATE_VERTICAL_CLAMP,ROTATE_VERTICAL_CLAMP)
+	#camera.global_rotation.x = vertical_rotation
 	
-	print(vertical_rotation)
+	#print(vertical_rotation)
