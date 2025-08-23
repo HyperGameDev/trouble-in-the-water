@@ -8,6 +8,7 @@ func _ready() -> void:
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Pause"):
+		#print("Pause detected during state ",state)
 		match state:
 			states.GAMEPLAY:
 				change_state(states.PAUSED)

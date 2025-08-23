@@ -27,8 +27,10 @@ func _input(_event: InputEvent) -> void:
 			current_node.fishing_state(true)
 
 func _physics_process(delta: float) -> void:
-	#_handle_rotation()
-	# Add the gravity.
+	if not is_fishing:
+		_handle_movement(delta)
+	
+func _handle_movement(delta:float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
