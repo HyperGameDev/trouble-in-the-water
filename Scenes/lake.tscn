@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cpb1vpvb1us37" path="res://Art/lake.blend" id="1_vmkck"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vmkck"]
-size = Vector2(1000, 1000)
+size = Vector2(100, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b76aj"]
 transparency = 1
@@ -11,15 +11,10 @@ albedo_color = Color(0.1533, 0.38398, 0.73, 0.435294)
 
 [node name="lake2" instance=ExtResource("1_vmkck")]
 
-[node name="ground" parent="." index="1"]
+[node name="ground" parent="." index="0"]
 transform = Transform3D(2.88645, 0, 0, 0, 0.757808, 0, 0, 0, 2.88645, 0.15335, -13.0308, 0.158877)
-visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(0.999988, 0.00486945, 0, -0.00486945, 0.999988, 0, 0, 0, 1, 1.81389, 12.051, 0.0230465)
 mesh = SubResource("PlaneMesh_vmkck")
 surface_material_override/0 = SubResource("StandardMaterial3D_b76aj")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="3"]
-transform = Transform3D(0.999988, 0.00486945, 0, -0.00486945, 0.999988, 0, 0, 0, 1, 1.88309, 11.9801, -0.018507)
-mesh = SubResource("PlaneMesh_vmkck")

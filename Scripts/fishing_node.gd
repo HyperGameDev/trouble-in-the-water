@@ -1,9 +1,12 @@
 extends Area3D
 
+@onready var mesh: MeshInstance3D = $MeshInstance3D
+
 @onready var label_fish: Label3D = %Label_Fish
 var is_being_fished: bool = false
 
 func _ready() -> void:
+	mesh.visible = false
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	

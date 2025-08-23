@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxobcx0rlprf4"]
+
+[ext_resource type="PackedScene" uid="uid://c0x4cokra8rm0" path="res://Art/a very scary monster.blend" id="1_xhoai"]
+[ext_resource type="Script" uid="uid://djfygpaoyfkpl" path="res://Scenes/monster.gd" id="2_i44lo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i44lo"]
+radius = 1.87
+height = 7.931
+
+[node name="monster" instance=ExtResource("1_xhoai")]
+script = ExtResource("2_i44lo")
+
+[node name="Armature" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/position = Vector3(-1.22509, -0.376679, 5.15199e-08)
+bones/1/rotation = Quaternion(3.51221e-08, -1.4969e-07, 0.308715, 0.951154)
+bones/2/rotation = Quaternion(-2.79724e-07, 4.18432e-08, -0.765671, 0.643232)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/position = Vector3(1.51693, 2.05869, -4.10052e-07)
+bones/3/rotation = Quaternion(-5.1788e-08, -2.44657e-08, -0.775834, 0.630937)
+bones/4/position = Vector3(-3.3293, -1.62598, 3.02513e-07)
+bones/4/rotation = Quaternion(9.39984e-08, -1.31206e-07, 0.308715, 0.951154)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/position = Vector3(-3.56931, -0.892043, 2.96909e-07)
+bones/5/rotation = Quaternion(-4.6229e-08, -1.32079e-07, -0.0745252, 0.997219)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(-3.09549, -0.291434, 1.99777e-07)
+bones/6/rotation = Quaternion(-1.20108e-07, -1.45846e-07, -0.495776, 0.86845)
+bones/7/position = Vector3(-2.35779, -0.0136986, 9.27529e-08)
+bones/7/rotation = Quaternion(-1.66373e-07, -8.55632e-08, -0.62115, 0.783692)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/position = Vector3(-1.57497, 0.100082, -6.71565e-09)
+bones/8/rotation = Quaternion(-9.93784e-08, -2.29335e-08, -0.682404, 0.730975)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/position = Vector3(-0.78392, 0.102595, -8.74011e-08)
+bones/9/rotation = Quaternion(-1.78998e-08, 4.34709e-08, -0.728417, 0.685134)
+bones/9/scale = Vector3(1, 1, 1)
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -5.96046e-08, 1, 0, -1, -5.96046e-08, 0, -0.8, 1.7)
+shape = SubResource("CapsuleShape3D_i44lo")

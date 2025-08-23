@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bigj3hth48cnx"]
+
+[ext_resource type="PackedScene" uid="uid://chvxyxj3wsuc5" path="res://Art/fishing rod.blend" id="1_q27nk"]
+
+[node name="fishing rod" instance=ExtResource("1_q27nk")]

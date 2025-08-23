@@ -24,5 +24,4 @@ func change_state(new_state: states) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		states.PAUSED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-				
 	
