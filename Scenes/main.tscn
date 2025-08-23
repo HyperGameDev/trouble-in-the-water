@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://57e1m1qmfecs"]
+[gd_scene load_steps=21 format=3 uid="uid://57e1m1qmfecs"]
 
 [ext_resource type="Script" uid="uid://cgqobh3qfv48e" path="res://Scenes/character_body_3d.gd" id="1_jjgbg"]
-[ext_resource type="Script" uid="uid://bqs80hd40bifp" path="res://fisihing_node.gd" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://bqs80hd40bifp" path="res://Scripts/fishing_node.gd" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://b5a04w3d7lowb" path="res://Scripts/fishing_ui.gd" id="3_8gbba"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7u77a"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -39,6 +40,42 @@ albedo_texture = SubResource("NoiseTexture2D_ynf5e")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bo1nx"]
 radius = 2.524
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo1nx"]
+content_margin_bottom = 64.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gbba"]
+bg_color = Color(0.6, 0.27, 0.15, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjvhh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.320833, 0.77, 0, 1)
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kry3j"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.320833, 0.77, 0, 1)
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+shadow_color = Color(0.005, 0.3, 0, 0.6)
+shadow_size = 25
 
 [node name="Node3D" type="Node3D"]
 
@@ -115,6 +152,7 @@ shape = SubResource("SphereShape3D_bo1nx")
 [node name="Label_Fish" type="Label3D" parent="Fisihing_node"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4968, 0)
+visible = false
 billboard = 2
 no_depth_test = true
 render_priority = 120
@@ -122,3 +160,51 @@ outline_render_priority = 127
 text = "FISH (E)"
 font_size = 142
 outline_size = 9
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fishing_ui" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_8gbba")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/fishing_ui"]
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 430
+theme_override_constants/margin_right = 300
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer/fishing_ui/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bo1nx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8gbba")
+value = 28.51
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/fishing_ui/MarginContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
+
+[node name="Panel" type="Panel" parent="CanvasLayer/MarginContainer/fishing_ui/MarginContainer/ProgressBar/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jjvhh")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/MarginContainer/fishing_ui/MarginContainer/ProgressBar/MarginContainer"]
+z_index = -10
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kry3j")
